@@ -2,6 +2,12 @@ d3.json("https://2u-data-curriculum-team.s3.amazonaws.com/dataviz-classroom/v1.1
   .then(function(data) {
     // Get the sample data
     const samples = data.samples;
+    const firstSample = data.samples[0];
+
+    // Take the top 10 OTUs by sample values
+    const top10SampleValues = firstSample.sample_values.slice(0, 10).reverse();
+    const top10OtuIDs = firstSample.otu_ids.slice(0, 10).reverse();
+    const top10OtuLabels = firstSample.otu_labels.slice(0, 10).reverse();
 
     // Get the metadata for the first sample
     const firstMetadata = data.metadata[0];
@@ -52,9 +58,9 @@ d3.json("https://2u-data-curriculum-team.s3.amazonaws.com/dataviz-classroom/v1.1
 
     // Create the trace for the bar chart
     const trace1 = {
-      x: samples[0].sample_values.slice(0, 10).reverse(),
-      y: samples[0].otu_ids.slice(0, 10).reverse().map(id => `OTU ${id}`),
-      text: samples[0].otu_labels.slice(0, 10).reverse(),
+      x: top10SampleValues,
+      y: top10OtuIDs.map(id => `OTU ${id}`),
+      text: top10OtuLabels,
       type: "bar",
       orientation: "h"
     };
