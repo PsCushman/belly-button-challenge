@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cherry+Bomb+One&display=swap" rel="stylesheet" crossorigin>
   <style>
-    
+
     .jumbotron {
       background-color: rgb(201, 186, 23);
     }
@@ -31,7 +31,7 @@
     }
 
     .col-md-2 .well {
-  background-color: rgb(201, 186, 23);
+      background-color: rgb(201, 186, 23);
     }
 
     .col-md-2 h5 {
@@ -51,9 +51,10 @@
       text-align: center;
     }
 
-
-
-
+    .panel {
+      border: 2px solid #58420c;
+    }
+    
   </style>
 </head>
 
@@ -79,11 +80,13 @@
           <div id="sample-metadata" class="panel-body"></div>
         </div>
       </div>
-      <div class="col-md-5">
-        <div id="bar" style="width: 800px;"></div>
-      </div>
-      <div class="col-md-5">
-        <div id="gauge"></div>
+      <div class="row">
+        <div class="col-md-5">
+          <div id="bar"></div>
+        </div>
+        <div class="col-md-4">
+          <div id="gauge"></div>
+        </div>
       </div>
     </div>
     <div class="row">

@@ -110,8 +110,9 @@ d3.json("https://2u-data-curriculum-team.s3.amazonaws.com/dataviz-classroom/v1.1
 
   // Attach the event listener to the dropdown menu
   d3.select("#selDataset").on("change", optionChanged);
+  
+})
 
-  })
 .catch(function(error) {
   console.log("Error fetching the JSON file:", error);
 });
