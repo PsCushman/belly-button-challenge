@@ -29,12 +29,7 @@ d3.json("https://2u-data-curriculum-team.s3.amazonaws.com/dataviz-classroom/v1.1
           { range: [7, 8], color: "rgb(159, 203, 102)" },
           { range: [8, 9], color: "rgb(168, 216, 115)" },
           { range: [9, 10], color: "rgb(222, 235, 247)" },
-        ],
-        threshold: {
-          line: { color: "red", width: 4 },
-          thickness: 0.75,
-          value: washValue
-        }
+        ]
       }
     };
 
