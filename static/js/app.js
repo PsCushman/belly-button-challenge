@@ -99,7 +99,7 @@ d3.json("https://2u-data-curriculum-team.s3.amazonaws.com/dataviz-classroom/v1.1
   function optionChanged() {
     const selectedSample = +d3.select("#selDataset").property("value");
 
-    // Update the metadata
+    // Update the data in the panel
     sampleMetadata.innerHTML = "";
     Object.entries(data.metadata[selectedSample]).forEach(([key, value]) => {
       const p = document.createElement("p");
@@ -107,10 +107,10 @@ d3.json("https://2u-data-curriculum-team.s3.amazonaws.com/dataviz-classroom/v1.1
       sampleMetadata.appendChild(p);
     });
   }
-
+   
   // Attach the event listener to the dropdown menu
   d3.select("#selDataset").on("change", optionChanged);
-  
+
 })
 
 .catch(function(error) {
