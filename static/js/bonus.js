@@ -1,15 +1,48 @@
 console.log("Bonus script loaded.");
-// get JSON data
-d3.json("https://2u-data-curriculum-team.s3.amazonaws.com/dataviz-classroom/v1.1/14-Interactive-Web-Visualizations/02-Homework/samples.json")
-  .then(function(jsonData) {
-    data = jsonData;
 
-    // Set constants and variables
-    const firstMetadata = data.metadata[0];
-    const washValue = firstMetadata.wfreq;
-    let gaugeChart;
+d3.json(DATA_URL).then(function(data) {
+  console.log(data);
+});
 
-    // Set paramaters for the creation of the gauge chart
+// Initialize the dashboard at start up 
+function init() {
+
+  // Use D3 to select the dropdown menu
+  let dropdownMenu = d3.select("#selDataset");
+
+  // Use D3 to get sample names and populate the drop-down selector
+  d3.json(DATA_URL).then((data) => {
+
+    // Set a variable for the sample names
+    let names = data.names;
+
+    // Add samples to dropdown menu
+    names.forEach((id) => {
+
+      // Log the value of id for each iteration of the loop
+      console.log(id);
+
+      dropdownMenu.append("option")
+        .text(id)
+        .property("value", id);
+    });
+
+    // Set the first sample from the list
+    let firstSampleid = names[0];
+
+    // Build the initial plots
+    drawGaugeChart(firstSampleid);
+  });
+}
+
+function drawGaugeChart(sample) {
+  // Use D3 to retrieve all of the data
+  d3.json(DATA_URL).then((data) => {
+    const metadata = data.metadata;
+    const subjectMetadata = metadata.filter(md => md.id == sample)[0];
+    let washValue = subjectMetadata.wfreq;
+
+    // Create the trace for the gauge chart
     const trace3 = {
       domain: { x: [0, 1], y: [0, 1] },
       value: washValue,
@@ -29,35 +62,19 @@ d3.json("https://2u-data-curriculum-team.s3.amazonaws.com/dataviz-classroom/v1.1
           { range: [7, 8], color: "rgb(159, 203, 102)" },
           { range: [8, 9], color: "rgb(168, 216, 115)" },
           { range: [9, 10], color: "rgb(222, 235, 247)" },
-        ]
-      }
+        ],
+      },
     };
 
-    // covert the trace to data for the gauage chart
+    // Create the data array for the gauge chart
     const gaugeData = [trace3];
 
-    // adjust the layout of the chart
+    // Set the layout for the gauge chart
     const gaugeLayout = { width: 400, height: 300, margin: { t: 0, b: 0 } };
 
-    // publish the chart
-    Plotly.newPlot("gauge", gaugeData, gaugeLayout).then(function(chart) {
-        gaugeChart = chart;
-  
-        // Function to update the gauge chart
-        function updateGaugeChart() {
-          const selectedSample = +d3.select("#selDataset").property("value");
-          const washValue = data.metadata[selectedSample].wfreq;
-          gaugeChart.data[0].value = washValue;
-          Plotly.redraw(gaugeChart);
-        }
-  
-        // Attach the event listener to the dropdown menu
-        d3.select("#selDataset").on("change", updateGaugeChart);
-  
-        // Update the gauge chart initially
-        updateGaugeChart();
-      });
-    })
-    .catch(function(error) {
-      console.log("Error fetching the JSON file:", error);
-    });
+    // Plot the gauge chart
+    Plotly.newPlot("gauge", gaugeData, gaugeLayout);
+  });
+}
+
+init();

@@ -1,0 +1,52 @@
+
+    #funny-background {
+      background-image: url('https://images.ctfassets.net/f60q1anpxzid/asset-1d2e98781e765461463a28b00078c438/e2cc9d4e73f8146ff3030f2fe5055f52/embeddedHPIMG_BellyButtonPersonalityTest_1280x627px.jpg?fm=jpg&fl=progressive&q=50&w=1200');
+      background-size: 300px; /* Specify the desired size */
+      background-repeat: repeat;
+      background-position: center;
+    }
+
+    .jumbotron {
+      background-color: rgb(201, 186, 23);
+      border: 2px solid #58420c;
+    }
+    .jumbotron h1 {
+      font-family: "Cherry Bomb One", cursive;
+      font-size: 80px;
+      color: #58420c;
+      margin-top: 5px;
+      text-align: center;
+    }
+
+    .jumbotron p {
+      font-family: "Cherry Bomb One", cursive;
+      font-size: 40px;
+      color: #58420c;
+    }
+
+    .col-md-2 .well {
+      background-color: rgb(201, 186, 23);
+      border: 2px solid #58420c;
+    }
+
+    .col-md-2 h5 {
+      font-family: "Cherry Bomb One", cursive;
+      font-size: 20px;
+      color: #58420c;
+    }
+
+    .panel-heading {
+      background-color:rgb(201, 186, 23)!important;
+    }
+
+    .panel-heading h3.panel-title {
+      font-family: "Cherry Bomb One", cursive;
+      font-size: 22px;
+      color: #58420c;
+      text-align: center;
+    }
+
+    .panel {
+      border: 2px solid #58420c;
+    }
+
