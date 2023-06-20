@@ -1,12 +1,8 @@
 const DATA_URL = "https://2u-data-curriculum-team.s3.amazonaws.com/dataviz-classroom/v1.1/14-Interactive-Web-Visualizations/02-Homework/samples.json";
 
-let selectedSampleid; // Variable to store the selected sample ID
-
 // Initialize the dashboard at start up 
 function init() {
   d3.json(DATA_URL).then(function(data) {
-    const samples = data.samples;
-    const metadata = data.metadata;
 
     // Set the initial selected sample ID as the first subject ID
     firstSampleid = data.names[0];
@@ -25,7 +21,7 @@ function init() {
     drawMetadata(firstSampleid);
     drawBarChart(firstSampleid);
     drawBubbleChart(firstSampleid);
-    drawGaugeChart(firstSampleid)
+    drawGaugeChart(firstSampleid);
   });
 }
 
@@ -33,10 +29,10 @@ function drawMetadata(sample) {
   // Use D3 to retrieve all of the data
   d3.json(DATA_URL).then((data) => {
     d3.select("#sample-metadata").html("");
-    const metadata = data.metadata.filter(md => md.id == sample)[0];
+    const selectedMetadata = data.metadata.filter(md => md.id == sample)[0];
 
     // Use Object.entries to add each key/value pair to the panel
-    Object.entries(metadata).forEach(([key, value]) => {
+    Object.entries(selectedMetadata).forEach(([key, value]) => {
       d3.select("#sample-metadata").append("h5").text(`${key}: ${value}`);
     });
   });
@@ -45,10 +41,10 @@ function drawMetadata(sample) {
 function drawBarChart(sample) {
   // Use D3 to retrieve all of the data
   d3.json(DATA_URL).then((data) => {
-    const samples = data.samples.filter(sd => sd.id == sample)[0];
-    const top10Samplevalues = samples.sample_values.slice(0, 10).reverse();
-    const top10OtuIDs = samples.otu_ids.slice(0, 10).reverse();
-    const top10Otulabels = samples.otu_labels.slice(0, 10).reverse();
+    const selectedSample = data.samples.filter(sd => sd.id == sample)[0];
+    const top10Samplevalues = selectedSample.sample_values.slice(0, 10).reverse();
+    const top10OtuIDs = selectedSample.otu_ids.slice(0, 10).reverse();
+    const top10Otulabels = selectedSample.otu_labels.slice(0, 10).reverse();
 
     // Create the trace for the bar chart
     const trace1 = {
@@ -58,7 +54,7 @@ function drawBarChart(sample) {
       type: "bar",
       orientation: "h",
       marker: {
-        color: 'darkgreen'
+        color: "#d3ca0e",
       }
     };
 
@@ -69,7 +65,9 @@ function drawBarChart(sample) {
     const layout1 = {
       title: "Top 10 OTUs",
       xaxis: { title: "Sample Values" },
-      yaxis: { title: "OTU IDs" }
+      yaxis: { title: "OTU IDs" },
+      width: 450,
+      height: 460,
     };
 
     // Plot the bar chart
@@ -80,17 +78,17 @@ function drawBarChart(sample) {
 function drawBubbleChart(sample) {
   // Use D3 to retrieve all of the data
   d3.json(DATA_URL).then((data) => {
-    const samples = data.samples.filter(sd => sd.id == sample)[0];
+    const selectedSample = data.samples.filter(sd => sd.id == sample)[0];
 
     // Create the trace for the bubble chart
     const trace2 = {
-      x: samples.otu_ids,
-      y: samples.sample_values,
-      text: samples.otu_labels,
+      x: selectedSample.otu_ids,
+      y: selectedSample.sample_values,
+      text: selectedSample.otu_labels,
       mode: 'markers',
       marker: {
-        size: samples.sample_values,
-        color: samples.otu_ids,
+        size: selectedSample.sample_values,
+        color: selectedSample.otu_ids,
         colorscale: 'Earth'
       }
     };
@@ -112,13 +110,12 @@ function drawBubbleChart(sample) {
 }
 
 // Function that updates dashboard when sample is changed
-function optionChanged(samples) {
-
+function optionChanged(selectedSample) {
   // Call all functions
-  drawMetadata(samples);
-  drawBarChart(samples);
-  drawBubbleChart(samples);
-  drawGaugeChart(samples);
+  drawMetadata(selectedSample);
+  drawBarChart(selectedSample);
+  drawBubbleChart(selectedSample);
+  drawGaugeChart(selectedSample);
 }
 
 // Call the initialize function
