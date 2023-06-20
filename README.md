@@ -1,6 +1,6 @@
 # belly-button-challenge
 
-# Deployment
+## Deployment
 https://pscushman.github.io/belly-button-challenge/
 
 
