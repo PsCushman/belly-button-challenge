@@ -7,7 +7,6 @@ function init() {
   
       // Build the dropdown options
       const dropdown = d3.select("#selDataset");
-    //   dropdown.selectAll("option").remove();
       data.names.forEach((id) => {
         dropdown
           .append("option")
@@ -46,7 +45,7 @@ function init() {
       type: "bar",
       orientation: "h",
       marker: {
-        color: "#d3ca0e",
+        color: "#FFD56F",
       },
     };
   

@@ -42,7 +42,6 @@ function drawGaugeChart(data, sample) {
   const gaugeLayout = {
     width: 450,
     height: 460,
-    margin: { t: 0, b: 0 },
   };
 
   // Plot the gauge chart

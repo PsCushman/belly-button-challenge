@@ -8,13 +8,13 @@
     }
 
     .jumbotron {
-      background-color: #5e8e05;
+      background-color: #A6BB8D;
       border: 2px solid #111111;
     }
     .jumbotron h1 {
       font-family: "Cherry Bomb One", cursive;
       font-size: 80px;
-      color: #066d92;
+      color: #227C70;
       margin-top: 5px;
       text-align: center;
     }
@@ -22,29 +22,33 @@
     .jumbotron p {
       font-family: "Cherry Bomb One", cursive;
       font-size: 40px;
-      color: #066d92;
+      color: #227C70;
     }
 
     .col-md-2 .well {
-      background-color: #5e8e05;
+      background-color: #A6BB8D;
       border: 2px solid #111111;
     }
 
     .col-md-2 h5 {
       font-family: "Cherry Bomb One", cursive;
       font-size: 20px;
-      color: #066d92;
+      color: #227C70;
     }
 
     .panel-heading {
-      background-color:#5e8e05!important;
+      background-color:#A6BB8D!important;
     }
 
     .panel-heading h3.panel-title {
       font-family: "Cherry Bomb One", cursive;
       font-size: 22px;
-      color: #066d92;
+      color: #227C70;
       text-align: center;
+    }
+
+    .panel.panel-primary {
+      border: 2px solid black;
     }
 
     .panel {
@@ -52,5 +56,21 @@
     }
 
     #gauge {
+      width: 450px;
+      height: 460px;
       border: 2px solid black;
+      box-sizing: border-box;
     }
+
+    #bar {
+      border: 2px solid black;
+      box-sizing: border-box;
+    }
+
+    #bubble {
+      border: 2px solid black;
+      box-sizing: border-box;
+      width: 100%; /* Adjust the width as needed */
+      height: 400px; /* Adjust the height as needed */
+    }
+    
