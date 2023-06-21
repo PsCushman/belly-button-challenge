@@ -13,9 +13,9 @@ function drawGaugeChart(data, sample) {
     title: { text: "Weekly Washing Frequency" },
     gauge: {
       axis: {
-        range: [0, 10],
-        tickvals: [0, 2, 4, 6, 8, 10],
-        ticktext: ["0", "2", "4", "6", "8", "10"],
+        range: [0, 9],
+        tickvals: [2, 4, 6, 8, 10],
+        ticktext: ["2", "4", "6", "8", "10"],
       },
       steps: [
         { range: [0, 1], color: "rgb(97, 76, 57)" },
@@ -27,9 +27,8 @@ function drawGaugeChart(data, sample) {
         { range: [6, 7], color: "rgb(162, 193, 10)" },
         { range: [7, 8], color: "rgb(107, 199, 0)" },
         { range: [8, 9], color: "rgb(42, 205, 0)" },
-        { range: [9, 10], color: "rgb(0, 211, 0)" }
       ],
-      bar: { color: "#066d92" },
+      bar: { color: "#227C70" },
       borderwidth: 2,
       bordercolor: "black",
     },
@@ -44,6 +43,10 @@ function drawGaugeChart(data, sample) {
     height: 460,
   };
 
-  // Plot the gauge chart
-  Plotly.newPlot("gauge", gaugeData, gaugeLayout);
+  if (sample === firstSampleid) { 
+    // Plot the gauge chart
+    Plotly.newPlot("gauge", gaugeData, gaugeLayout);
+  } else {
+    Plotly.restyle("gauge", "value", [washValue]);
+  }
 }
